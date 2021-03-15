@@ -1,0 +1,15 @@
+version: "3" 
+
+services:
+  matrix-mumble-bridge:
+    build:
+      dockerfile: ./Dockerfile
+      context: . 
+    image: bertieb/matrix-appservice-mumble:0.2-pre3
+    container_name: matrix-appservice-mumble
+    volumes:
+      - ./mumble-config.yaml:/config/mumble-config.yaml:ro
+      - ./mumble-registration.yaml:/mam/build/mumble-registration.yaml:ro
+      - ./mumble-registration.yaml:/config/mumble-registration.yaml:ro
+    ports:
+      - 8090:8090
